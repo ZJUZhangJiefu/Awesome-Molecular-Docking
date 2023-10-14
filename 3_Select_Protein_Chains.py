@@ -190,11 +190,12 @@ for name in tqdm(names):
         sel = prot.select(' or '.join(map(lambda c: f'chain {c}', valid_chain_ids)))
     except:
         print("Problematic valid_chain_ids: ", valid_chain_ids)
-        print("Encountered illegal chains, skip selecting chains this protein.")
-        continue
+        print("Encountered illegal chains, and keep all chains in this protein.")
+        sel = prot
     """
     NOTICE: 
-    When encountering chains that have no name, I skip the corresponding protein for simplicity.
+    When encountering chains that have no name, I skip selecting the corresponding protein chains, 
+    and keep the whole protein for simplicity.
     You may need to modify the try-except code section for more professional reasons.
     """
     # write the protein with valid chain selected into another PDB file
